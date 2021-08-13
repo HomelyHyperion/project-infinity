@@ -32,7 +32,7 @@ async function getNFT({contract, tokenId}) {
   if (metadata.image) {
     metadata.image = makeGatewayURL(metadata.image);
   }
-  return metadata;
+  return {id: Number(tokenId), ...metadata};
 }
 
 async function mintNFT({contract, ownerAddress, provider, gasPrice, setStatus, image, name, description, blockNumber, parentTokenId}) {
@@ -126,7 +126,7 @@ const Infinity = ({
   async function getItems(childTokenIds) {
     for (let i = 0; i < childTokenIds.length; i++) {
       const item = await getNFT({ contract: readContracts.NFTMinter, tokenId: childTokenIds[i] });
-      items.push({id: Number(childTokenIds[i]), ...item});
+      items.push(item);
     }
     return items;
   }
