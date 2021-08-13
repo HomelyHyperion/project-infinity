@@ -182,6 +182,7 @@ const Infinity = ({
         setMinting(false);
         setShowMinter(false);
         setFile(null);
+        setPreviewURL(null);
         setName('');
         setDescription('');
         console.log('minting complete');
