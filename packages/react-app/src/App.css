@@ -1,0 +1,141 @@
+.App {
+  text-align: center;
+}
+
+.frame {
+  position: relative;
+  width: 406px;
+  height: 406px;
+  margin: 100px auto 40px;
+  border: 3px solid #000000;
+}
+
+.grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: grid;
+  gap: 0px;
+  grid-template-columns: repeat(10, 1fr);
+  grid-auto-flow: row;
+}
+
+.grid-item {
+  background: #ffffff;
+  width: 38px;
+  height: 38px;
+  margin: 1px;
+  display: inline-block;
+  opacity: 0.3;
+  background-size: cover;
+  background-position: center;
+}
+
+.grid-item.active {
+  border: 1px solid #333333;
+  opacity: 1;
+}
+
+.grid-item.filled {
+  opacity: 0.8;
+}
+
+.grid-item:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.minter {
+  width: 300px;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  background: #ffffff;
+  border-left: 1px solid #dddddd;
+  z-index: 1;
+  padding: 20px;
+}
+
+.fadeIn {
+  animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.minter h3 + div.current-item {
+  font-size: 14px;
+}
+
+.current-item img {
+  max-width: 100%;
+}
+
+.current-item h4,
+.current-item p {
+  text-align: left;
+}
+
+.minter p {
+  color: #888888;
+}
+
+.minter h3 {
+  margin-bottom: 20px;
+}
+
+.minter h3 + div {
+  font-size: 11px;
+}
+
+.minter .avatar-uploader {
+  margin: 14px 0 8px;
+}
+
+.minter .anticon-plus + div {
+  font-size: 11px;
+}
+
+.minter .ant-input {
+  margin: 0 0 10px;
+}
+
+.minter .ant-btn {
+  width: 100%;
+}
+
+.preview-image {
+  width: 100px;
+  height: 100px;
+  background-size: cover;
+  background-position: center;
+  display: inline-block;
+  margin-bottom: 15px;
+  border: 2px solid #000000;
+  overflow: hidden;
+}
+
+.preview-image .avatar-uploader {
+  opacity: 0;
+  margin: 0;
+}
+
+.preview-image:hover .avatar-uploader {
+  display: block;
+  opacity: 0.95;
+}
+
+.preview-image .ant-upload.ant-upload-select-picture-card {
+  margin: 0;
+  width: 100%;
+  height: 96px;
+  border-radius: 0;
+  border: none;
+}
