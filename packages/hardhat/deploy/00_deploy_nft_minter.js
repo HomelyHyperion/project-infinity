@@ -8,7 +8,7 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
   await deploy("NFTMinter", {
     // Learn more about args here: https://www.npmjs.com/package/hardhat-deploy#deploymentsdeploy
     from: deployer,
-    args: ["NFTExample", "E2ENFT"],
+    args: ["Infinity721", "INFINITY"],
     log: true,
   });
 

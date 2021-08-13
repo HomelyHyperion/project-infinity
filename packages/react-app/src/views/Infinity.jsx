@@ -181,6 +181,9 @@ const Infinity = ({
       }).then(async(newTokenId) => {
         setMinting(false);
         setShowMinter(false);
+        setFile(null);
+        setName('');
+        setDescription('');
         console.log('minting complete');
         setTokenId(newTokenId);
         const childTokenIds = await getChildTokens(parentItem.id);
