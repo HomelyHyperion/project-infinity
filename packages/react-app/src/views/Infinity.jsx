@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { PlusOutlined } from '@ant-design/icons';
+import { PlusOutlined, CloseCircleOutlined, UpCircleFilled } from '@ant-design/icons';
 import { Upload, Input, Button, Spin } from 'antd';
 import { NFTStorage } from 'nft.storage';
 import { useHistory, useParams } from 'react-router-dom';
@@ -160,6 +160,7 @@ const Infinity = ({
   }
 
   const mint = async() => {
+    if(file === null) return false;
     startMinting(writeContracts.NFTMinter);
   }
 
@@ -272,12 +273,14 @@ const Infinity = ({
             }
           })}
         </div>
+        {parentItem.id !== 0 && <UpCircleFilled className="up-btn" onClick={() => history.goBack()} />}
       </div>
       <div className="navigator">
         <h3>{parentItem.name}</h3>
         <p>{parentItem.description}</p>
       </div>
       {showMinter && <div className="minter">
+        <CloseCircleOutlined className="close-btn" onClick={() => setShowMinter(false)} />
         <h3>Block #{blockNum}</h3>
         {currentItem && 
           <div className="current-item">
@@ -286,7 +289,7 @@ const Infinity = ({
             <br />
             <h4>{currentItem.name}</h4>
             <p>{currentItem.description}</p>
-            <Button type="primary" onClick={() =>{}}>Enter</Button>
+            <Button type="primary" onClick={() => handleItemClick(blockNum - 1, currentItem)}>Enter</Button>
           </div>
         }
         {!currentItem && 
