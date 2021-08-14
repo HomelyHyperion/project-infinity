@@ -4,7 +4,7 @@ import WalletLink from "walletlink";
 import { Alert, Button, Col, Menu, Row } from "antd";
 import "antd/dist/antd.css";
 import React, { useCallback, useEffect, useState } from "react";
-import { BrowserRouter, Link, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Link, Route, Switch, Redirect } from "react-router-dom";
 import Web3Modal from "web3modal";
 import "./App.css";
 import { Account, Contract, Faucet, GasGauge, Header, Ramp, ThemeSwitch } from "./components";
@@ -381,16 +381,6 @@ function App(props) {
       {networkDisplay}
       <BrowserRouter>
         <Menu style={{ textAlign: "center" }} selectedKeys={[route]} mode="horizontal">
-          <Menu.Item key="/">
-            <Link
-              onClick={() => {
-                setRoute("/");
-              }}
-              to="/"
-            >
-              Contract
-            </Link>
-          </Menu.Item>
           <Menu.Item key="/infinity">
             <Link
               onClick={() => {
@@ -401,24 +391,22 @@ function App(props) {
               Project Infinity
             </Link>
           </Menu.Item>
+          <Menu.Item key="/contract">
+            <Link
+              onClick={() => {
+                setRoute("/contract");
+              }}
+              to="/contract"
+            >
+              Contract
+            </Link>
+          </Menu.Item>          
         </Menu>
 
         <Switch>
           <Route exact path="/">
-            {/*
-                🎛 this scaffolding is full of commonly used components
-                this <Contract/> component will automatically parse your ABI
-                and give you a form to interact with it locally
-            */}
-
-            <Contract
-              name="NFTMinter"
-              signer={userSigner}
-              provider={localProvider}
-              address={address}
-              blockExplorer={blockExplorer}
-            />
-          </Route>
+            <Redirect to="/infinity" />
+          </Route>      
           <Route path={`/infinity/:id`}>
             <Infinity 
               signer={userSigner}
@@ -441,6 +429,15 @@ function App(props) {
               readContracts={readContracts}
             />
           </Route>
+          <Route exact path="/contract">
+            <Contract
+              name="NFTMinter"
+              signer={userSigner}
+              provider={localProvider}
+              address={address}
+              blockExplorer={blockExplorer}
+            />
+          </Route>              
         </Switch>
       </BrowserRouter>
 
