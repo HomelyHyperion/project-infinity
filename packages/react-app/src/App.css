@@ -10,6 +10,13 @@
   border: 3px solid #000000;
 }
 
+.frame .base-image {
+  width: 400px;
+  height: 400px;
+  background-size: cover;
+  background-position: center;
+}
+
 .frame .up-btn {
   position: absolute;
   bottom: 0;

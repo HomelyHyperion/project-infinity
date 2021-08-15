@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import ReactTextFormat from 'react-text-format';
 import { PlusOutlined, CloseCircleOutlined, UpCircleFilled } from '@ant-design/icons';
 import { Upload, Input, Button, Spin } from 'antd';
 import { NFTStorage } from 'nft.storage';
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory, useParams, Link } from 'react-router-dom';
 
 import { NFT_STORAGE_KEY } from '../constants';
 import { Transactor } from '../helpers';
@@ -251,7 +252,7 @@ const Infinity = ({
   return (
     <>
       <div className="frame">
-        <img src={parentItem.image} alt="genesis" width="400" height="400" />
+        <div className="base-image" style={{backgroundImage: `url("${parentItem.image}")`}}></div>
         <div className="grid">
           {Array.from(Array(100).keys()).map(x => {
             const nftItemz = nftItems.filter(item => item.blockNumber === x + 1);
@@ -273,11 +274,11 @@ const Infinity = ({
             }
           })}
         </div>
-        {parentItem.id !== 0 && <UpCircleFilled className="up-btn" onClick={() => history.goBack()} />}
+        {parentItem.id !== 0 && <Link to={`/infinity/${parentItem.parentTokenId !== 0 ? parentItem.parentTokenId : ''}`}><UpCircleFilled className="up-btn" onClick={() => history.goBack()} /></Link>}
       </div>
       <div className="navigator">
         <h3>{parentItem.name}</h3>
-        <p>{parentItem.description}</p>
+        <p><ReactTextFormat linkTarget="_blank">{parentItem.description}</ReactTextFormat></p>
       </div>
       {showMinter && <div className="minter">
         <CloseCircleOutlined className="close-btn" onClick={() => setShowMinter(false)} />
@@ -288,7 +289,7 @@ const Infinity = ({
             <br />
             <br />
             <h4>{currentItem.name}</h4>
-            <p>{currentItem.description}</p>
+            <p><ReactTextFormat linkTarget="_blank">{currentItem.description}</ReactTextFormat></p>
             <Button type="primary" onClick={() => handleItemClick(blockNum - 1, currentItem)}>Enter</Button>
           </div>
         }
